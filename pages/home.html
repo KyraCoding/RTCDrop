@@ -1,33 +1,16 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>RTCDrop</title>
-  </head>
-  <body>
-    <h1>RTCDrop</h1>
-    <button id="connect">connect</button>
-    <button id="disconnect">disconnect</button>
-    <script>
-      (function () {
-        let connectButton = document.getElementById("connect");
-        let disconnectButton = document.getElementById("disconnect");
-        let localConnection = null; // RTCPeerConnection for our "local" connection
-        let remoteConnection = null; // RTCPeerConnection for the "remote"
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filedrop</title>
+</head>
+<body>
+    <input type="file" id="fileInput">
+    <button id="sendFile">Send File</button>
+    <div id="status">Not connected</div>
 
-        let sendChannel = null; // RTCDataChannel for the local (sender)
-        let receiveChannel = null; // RTCDataChannel for the remote (receiver)
-        connectButton.addEventListener("click", connectPeers, false);
-        disconnectButton.addEventListener("click", disconnectPeers, false);
-
-        function connectPeers() {
-          localConnection = new RTCPeerConnection();
-
-          sendChannel = localConnection.createDataChannel("sendChannel");
-          sendChannel.onopen = alert("okay");
-          sendChannel.onclose = alert("um okay");
-        }
-        function disconnectPeers() {}
-      })();
-    </script>
-  </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js"></script>
+</body>
 </html>
